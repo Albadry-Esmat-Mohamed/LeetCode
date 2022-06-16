@@ -1,29 +1,27 @@
 public class Solution {
-    public int Search(int[] nums, int target) 
-    {
-        var start = 0;
-        var end = nums.Length - 1;
-      
-        while(start <= end)
+    public int Search(int[] nums, int target) {
+        
+        int low   = 0;
+        int high  = nums.Length -1;
+        int mid   = 0;
+        
+        while ( low <= high )
         {
-            var midle = start + (end - start) / 2;
+            mid = (low + high)/2 ;
+         
+            if(nums[mid] == target)
+            return mid;
             
-            if(nums[midle] == target)
-                return midle;
-            
-            if(nums[midle] > target)
-            {
-                end = midle - 1;
+            if(target > nums[mid])
+            {  low = mid + 1;
                 continue;
             }
-            
-            if(nums[midle] < target)
+            if(target < nums[mid])
             {
-                start = midle + 1;
+                high = mid - 1;  
                 continue;
             }
         }
-        
-        return -1;
+            return -1;
     }
 }
